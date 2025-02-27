@@ -1,0 +1,39 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+      
+      - name: Validate HTML, CSS, and JS
+        run: |
+          echo "Validating HTML, CSS, and JS files..."
+          # Example: Use a linter like htmlhint, stylelint, or eslint if available
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+      
+      - name: Deploy Application
+        run: |
+          echo "Deploying static website..."
+          # Example: Deploy to GitHub Pages
+          # git config --global user.email "you@example.com"
+          # git config --global user.name "Your Name"
+          # git add .
+          # git commit -m "Deploy website"
+          # git push origin main
